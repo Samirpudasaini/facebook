@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        fb: {
+          blue: "hsl(var(--fb-blue))",
+          green: "hsl(var(--fb-green))",
+          gray: "hsl(var(--fb-gray))",
+          "light-gray": "hsl(var(--fb-light-gray))",
+          text: "hsl(var(--fb-text))",
+          link: "hsl(var(--fb-link))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
