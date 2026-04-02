@@ -62,7 +62,7 @@ const ImageCollage = () => {
 
       {/* Emoji / reaction bubbles */}
       <div className="absolute top-[20px] left-[60px] text-3xl z-30 drop-shadow-md">😂</div>
-      <div className="absolute top-[180px] right-[20px] z-30 w-10 h-10 rounded-full bg-pink-400 flex items-center justify-center shadow-md">
+      <div className="absolute top-[180px] right-[20px] z-30 w-10 h-10 rounded-full bg-destructive/70 flex items-center justify-center shadow-md">
         <span className="text-lg">❤️</span>
       </div>
 
