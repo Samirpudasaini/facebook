@@ -8,20 +8,20 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 2% 96%;
-    --foreground: 0 0% 10%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 0 0% 7%;
 
     --primary: 214 89% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 41% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 214 89% 52%;
 
     --muted: 210 17% 95%;
     --muted-foreground: 0 0% 46%;
@@ -33,17 +33,13 @@ All colors MUST be HSL.
     --destructive-foreground: 210 40% 98%;
 
     --border: 0 0% 85%;
-    --input: 0 0% 85%;
+    --input: 0 0% 78%;
     --ring: 214 89% 52%;
 
-    --radius: 0.375rem;
+    --radius: 0.5rem;
 
     --fb-blue: 214 89% 52%;
-    --fb-green: 120 41% 45%;
-    --fb-gray: 0 0% 62%;
-    --fb-light-gray: 240 2% 96%;
-    --fb-text: 0 0% 10%;
-    --fb-link: 214 89% 42%;
+    --fb-dark: 0 0% 7%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
