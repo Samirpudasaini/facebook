@@ -115,19 +115,19 @@ const Index = () => {
           <div className="w-full max-w-[396px] lg:border-l lg:border-border lg:pl-12">
             <div className="py-8">
               <h2 className="text-xl font-semibold text-foreground mb-6">Log into Facebook</h2>
-              <input
+              <FloatingInput
                 type="text"
-                placeholder="Email or mobile number"
+                label="Email or mobile number"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[52px] px-4 text-base border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
-              <input
+              <FloatingInput
                 type="password"
-                placeholder="Password"
+                label="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[52px] px-4 text-base border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary mt-3"
+                className="mt-3"
+              />
               />
               <button className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all">
                 Log in
