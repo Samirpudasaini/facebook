@@ -167,7 +167,6 @@ const FloatingInput = ({
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-3"
               />
-              />
               <button className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all">
                 Log in
               </button>
