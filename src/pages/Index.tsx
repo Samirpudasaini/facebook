@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 
 const FacebookLogo = () => (
   <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
@@ -90,7 +90,47 @@ const ImageCollage = () => {
   );
 };
 
+const FloatingInput = ({
+  label,
+  type,
+  value,
+  onChange,
+  className = "",
+}: {
+  label: string;
+  type: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+}) => {
+  const [focused, setFocused] = useState(false);
+  const isActive = focused || value.length > 0;
+
+  return (
+    <div className={`relative ${className}`}>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        className="peer w-full h-[52px] px-4 pt-5 pb-1 text-base border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+      />
+      <label
+        className={`absolute left-4 transition-all duration-150 pointer-events-none ${
+          isActive
+            ? "top-1.5 text-xs text-muted-foreground"
+            : "top-3.5 text-base text-muted-foreground"
+        }`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+};
+
 const Index = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -115,19 +155,18 @@ const Index = () => {
           <div className="w-full max-w-[396px] lg:border-l lg:border-border lg:pl-12">
             <div className="py-8">
               <h2 className="text-xl font-semibold text-foreground mb-6">Log into Facebook</h2>
-              <input
+              <FloatingInput
                 type="text"
-                placeholder="Email or mobile number"
+                label="Email or mobile number"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-[52px] px-4 text-base border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
-              <input
+              <FloatingInput
                 type="password"
-                placeholder="Password"
+                label="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[52px] px-4 text-base border border-input rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary mt-3"
+                className="mt-3"
               />
               <button className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all">
                 Log in
