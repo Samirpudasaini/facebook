@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 
 const FacebookLogo = () => (
   <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
