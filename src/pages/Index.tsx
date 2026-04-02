@@ -161,7 +161,7 @@ const Index = () => {
             ))}
             <a href="#" className="text-muted-foreground hover:underline">More languages...</a>
           </div>
-          <div className="border-t border-border pt-2">
+          <div className="pt-2">
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
               {["Sign Up", "Log In", "Messenger", "Facebook Lite", "Video", "Meta Pay", "Meta Store", "Meta Quest", "Ray-Ban Meta", "Meta AI", "Instagram", "Threads", "Privacy Policy"].map((link, i) => (
                 <a key={i} href="#" className="hover:underline">{link}</a>
