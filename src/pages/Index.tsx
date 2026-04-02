@@ -90,7 +90,46 @@ const ImageCollage = () => {
   );
 };
 
-const Index = () => {
+const FloatingInput = ({
+  label,
+  type,
+  value,
+  onChange,
+  className = "",
+}: {
+  label: string;
+  type: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+}) => {
+  const [focused, setFocused] = useState(false);
+  const isActive = focused || value.length > 0;
+
+  return (
+    <div className={`relative ${className}`}>
+      <input
+        type={type}
+        value={value}
+        onChange={onChange}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        className="peer w-full h-[52px] px-4 pt-5 pb-1 text-base border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+      />
+      <label
+        className={`absolute left-4 transition-all duration-150 pointer-events-none ${
+          isActive
+            ? "top-1.5 text-xs text-muted-foreground"
+            : "top-3.5 text-base text-muted-foreground"
+        }`}
+      >
+        {label}
+      </label>
+    </div>
+  );
+};
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
