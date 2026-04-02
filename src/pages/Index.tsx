@@ -152,13 +152,28 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="py-4 px-4 border-t border-border">
-        <div className="max-w-[1100px] mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground">
-          {["English (US)", "नेपाली", "हिन्दी", "Español", "Português (Brasil)", "日本語", "Français (France)"].map((lang, i) => (
-            <a key={i} href="#" className="text-muted-foreground hover:underline">
-              {lang}
-            </a>
-          ))}
-          <a href="#" className="text-muted-foreground hover:underline">More languages...</a>
+        <div className="max-w-[1100px] mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground mb-2">
+            {["English (US)", "नेपाली", "हिन्दी", "Español", "Português (Brasil)", "日本語", "Français (France)"].map((lang, i) => (
+              <a key={i} href="#" className="text-muted-foreground hover:underline">
+                {lang}
+              </a>
+            ))}
+            <a href="#" className="text-muted-foreground hover:underline">More languages...</a>
+          </div>
+          <div className="border-t border-border pt-2">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+              {["Sign Up", "Log In", "Messenger", "Facebook Lite", "Video", "Meta Pay", "Meta Store", "Meta Quest", "Ray-Ban Meta", "Meta AI", "Instagram", "Threads", "Privacy Policy"].map((link, i) => (
+                <a key={i} href="#" className="hover:underline">{link}</a>
+              ))}
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground mt-1">
+              {["Privacy Center", "About", "Create ad", "Create Page", "Developers", "Careers", "Cookies", "Ad choices ▶", "Terms", "Help", "Contact Uploading & Non-Users"].map((link, i) => (
+                <a key={i} href="#" className="hover:underline">{link}</a>
+              ))}
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground text-center mt-3">Meta © 2026</p>
         </div>
       </footer>
     </div>
