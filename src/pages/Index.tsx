@@ -129,6 +129,7 @@ const FloatingInput = ({
   );
 };
 
+const Index = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
