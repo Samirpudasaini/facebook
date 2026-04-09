@@ -95,6 +95,10 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    zoom: 1.1;
+  }
+
   body {
     @apply bg-background text-foreground;
   }

