@@ -8,10 +8,10 @@ const FacebookLogo = () => (
 );
 
 const MetaLogo = () => (
-  <img
-    src="/images/metalogo.jpg"   
+  <img 
+    src="https://z-m-static.xx.fbcdn.net/rsrc.php/ys/r/RkrEdst9VSp.webp"
     alt="Meta"
-    className="h-6 w-auto"
+    className="h-4 w-auto"
   />
 );
 
@@ -129,7 +129,42 @@ const Index = () => {
       forgotPassword: "पासवर्ड भूल गए?",
       createAccount: "नया अकाउंट बनाएं",
     },
-    // Add more languages (es, pt, ja, fr) as needed...
+    es: {
+      explore: "Explora las cosas que te encantan.",
+      loginTitle: "Iniciar sesión en Facebook",
+      emailLabel: "Número de móvil o correo electrónico",
+      passwordLabel: "Contraseña",
+      loginBtn: "Iniciar sesión",
+      forgotPassword: "¿Olvidaste tu contraseña?",
+      createAccount: "Crear cuenta nueva",
+    },
+    pt: {
+      explore: "Explore as coisas que você ama.",
+      loginTitle: "Entrar no Facebook",
+      emailLabel: "Número de celular ou email",
+      passwordLabel: "Senha",
+      loginBtn: "Entrar",
+      forgotPassword: "Esqueceu a senha?",
+      createAccount: "Criar nova conta",
+    },
+    ja: {
+      explore: "あなたが好きなものを探しましょう。",
+      loginTitle: "Facebookにログイン",
+      emailLabel: "携帯電話番号またはメールアドレス",
+      passwordLabel: "パスワード",
+      loginBtn: "ログイン",
+      forgotPassword: "パスワードをお忘れですか？",
+      createAccount: "新しいアカウントを作成",
+    },
+    fr: {
+      explore: "Explorez les choses que vous aimez.",
+      loginTitle: "Se connecter à Facebook",
+      emailLabel: "Numéro de mobile ou email",
+      passwordLabel: "Mot de passe",
+      loginBtn: "Se connecter",
+      forgotPassword: "Mot de passe oublié ?",
+      createAccount: "Créer un nouveau compte",
+    },
   };
 
   const t = (key: string) => translations[currentLang]?.[key] || translations.en[key];
@@ -260,11 +295,34 @@ const Index = () => {
             <a href="#" className="text-muted-foreground hover:underline">More languages...</a>
           </div>
           <div className="pt-2">
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-              {["Sign Up", "Log In", "Messenger", "Facebook Lite", "Video", "Meta Pay", "Meta Store", "Meta Quest", "Ray-Ban Meta", "Meta AI", "Instagram", "Threads", "Privacy Policy"].map((link, i) => (
-                <a key={i} href="#" className="hover:underline">{link}</a>
-              ))}
-            </div>
+              <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+                <a href="https://www.facebook.com/reg/" className="hover:underline">Sign Up</a>
+                <a href="https://www.facebook.com/login/" className="hover:underline">Log In</a>
+                <a href="https://www.messenger.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Messenger</a>
+                <a href="https://www.facebook.com/lite/" className="hover:underline">Facebook Lite</a>
+                <a href="https://www.facebook.com/watch/" className="hover:underline">Video</a>
+                <a href="https://www.facebook.com/pay/" className="hover:underline">Meta Pay</a>
+                <a href="https://www.meta.com/store/" target="_blank" rel="noopener noreferrer" className="hover:underline">Meta Store</a>
+                <a href="https://www.meta.com/quest/" target="_blank" rel="noopener noreferrer" className="hover:underline">Meta Quest</a>
+                <a href="https://www.meta.com/ray-ban-stories/" target="_blank" rel="noopener noreferrer" className="hover:underline">Ray-Ban Meta</a>
+                <a href="https://www.meta.com/ai/" target="_blank" rel="noopener noreferrer" className="hover:underline">Meta AI</a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Instagram</a>
+                <a href="https://www.threads.net/" target="_blank" rel="noopener noreferrer" className="hover:underline">Threads</a>
+                <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer" className="hover:underline">Privacy Policy</a>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500 dark:text-gray-400 mt-3">
+                <a href="https://www.facebook.com/privacy/" className="hover:underline">Privacy Center</a>
+                <a href="https://about.facebook.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">About</a>
+                <a href="https://www.facebook.com/ads/create/" className="hover:underline">Create ad</a>
+                <a href="https://www.facebook.com/pages/create/" className="hover:underline">Create Page</a>
+                <a href="https://developers.facebook.com/" target="_blank" rel="noopener noreferrer" className="hover:underline">Developers</a>
+                <a href="https://www.facebook.com/careers/" target="_blank" rel="noopener noreferrer" className="hover:underline">Careers</a>
+                <a href="https://www.facebook.com/cookies/" className="hover:underline">Cookies</a>
+                <a href="https://www.facebook.com/help/568137493302217" className="hover:underline">Ad choices ▶</a>
+                <a href="https://www.facebook.com/terms/" className="hover:underline">Terms</a>
+                <a href="https://www.facebook.com/help/" className="hover:underline">Help</a>
+              </div>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground mt-1">
               {["Privacy Center", "About", "Create ad", "Create Page", "Developers", "Careers", "Cookies", "Ad choices ▶", "Terms", "Help", "Contact Uploading & Non-Users"].map((link, i) => (
                 <a key={i} href="#" className="hover:underline">{link}</a>
