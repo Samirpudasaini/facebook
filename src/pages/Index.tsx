@@ -402,17 +402,7 @@ const Index = () => {
           <p className="text-xs text-muted-foreground text-center mt-3">Meta © 2026</p>
         </div>
       </footer>
-      {/* Mobile Footer */}
-        <footer className="py-4 text-center text-xs text-gray-500 border-t border-gray-200 bg-white">
-          <div className="flex justify-center gap-x-4">
-            <a href="#" className="hover:underline">About</a>
-            <a href="#" className="hover:underline">Help</a>
-            <a href="#" className="hover:underline">More</a>
-          </div>
-          <div className="mt-2">
-            <span>Meta © 2026</span>
-          </div>
-        </footer>
+      
     </div>
   );
 };
