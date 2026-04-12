@@ -306,13 +306,10 @@ const Index = () => {
               >
                 {t("loginBtn")}
               </button>
-
               <div className="text-center py-2">
                 <a
                   href="https://www.facebook.com/login/identify/"
-                className="inline-block px-24 py-3  text-[#0b0b0b] text-[15px] font-medium underline
-                          rounded-full transition-all duration-200
-                          hover:bg-[#f0f2f5] hover:text-[#0c0c0c] hover:w-full"
+                  className="inline-block px-24 py-3 rounded-full text-[#0e0f0f] text-sm font-medium  underline hover:bg-[#f0f2f5] hover:text-[#0c0c0c] hover:w-full "
                 >
                   {t("forgotPassword")}
                 </a>
@@ -326,7 +323,7 @@ const Index = () => {
 
               <button
                 onClick={() => window.location.href = "https://www.facebook.com/reg/"}
-                className="w-full h-[52px] border border-[#1877f2] text-[#1877f2] 
+                className="w-full h-[47px] border border-[#1877f2] text-[#1877f2] 
                           text-[17px] font-semibold rounded-[37px] hover:bg-[#f0f2f5] 
                           transition-all duration-200"
               >
@@ -402,7 +399,6 @@ const Index = () => {
           <p className="text-xs text-muted-foreground text-center mt-3">Meta © 2026</p>
         </div>
       </footer>
-      
     </div>
   );
 };
