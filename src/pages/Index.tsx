@@ -279,6 +279,11 @@ const Index = () => {
             <div className="flex justify-center lg:hidden mb-10">
               <FacebookLogo />
               </div>
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+            </div>
 
             <h2 className="hidden lg:block text-center text-[28px] font-semibold text-foreground mb-8">
               {t("loginTitle")}
@@ -300,8 +305,8 @@ const Index = () => {
               />
               <button
                 onClick={handleLogin}
-                className="w-full h-[42px] bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#166fe5] 
-                          text-white text-[17px] font-semibold rounded-[37px] mt-2 
+                className="w-full h-[40px] bg-[#1877f2] hover:bg-[#166fe5] active:bg-[#166fe5] 
+                          text-white text-[17px] font-semibold rounded-[32px] mt-2 
                           transition-all duration-200 shadow-sm"
               >
                 {t("loginBtn")}
@@ -309,7 +314,7 @@ const Index = () => {
               <div className="text-center py-2">
                 <a
                   href="https://www.facebook.com/login/identify/"
-                  className="inline-block px-24 py-3 rounded-full text-[#0e0f0f] text-sm font-medium  underline hover:bg-[#f0f2f5] hover:text-[#0c0c0c] hover:w-full "
+                  className="flex justify-center px-6 py-3 rounded-full text-[#0e0f0f] text-sm font-medium  underline hover:bg-[#f0f2f5] hover:text-[#0c0c0c] hover:w-full "
                 >
                   {t("forgotPassword")}
                 </a>
@@ -333,7 +338,7 @@ const Index = () => {
 
             <div className="flex justify-center mt-12 lg:mt-4 ">
               <MetaLogo />
-            </div>
+              </div>
           </div>
         </div>
         </div>
